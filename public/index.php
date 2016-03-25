@@ -17,8 +17,8 @@ try {
     $app->init();
     $app->router();
     $app->dispatch();
-    echo "Controller: $app->controller<br>";
-    echo "Action: $app->action<br>";
+  //  echo "Controller: $app->controller<br>";
+   // echo "Action: $app->action<br>";
   //  var_dump($app->params);
 
 

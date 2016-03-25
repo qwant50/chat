@@ -3,6 +3,7 @@
 namespace malahov\controllers;
 
 use malahov\core\Controller;
+use malahov\models\Message;
 use malahov\models\modelSignup;
 use malahov\core\Model;
 use malahov\core\View;
@@ -71,5 +72,32 @@ class MainController extends Controller
     {
         session_destroy();
         return $this->actionIndex();
+    }
+
+    public function actionPosts()
+    {
+        $this->model = new Message();
+        $data = $this->model->getMessages();
+        return $this->view->renderPartial('messages', $data);
+       // return $res;
+        //return 'Now: ' . date('l jS \of F Y h:i:s A');
+    }
+
+    public function actionAddMessage()
+    {
+        if (isset($_POST['message']) && is_string($_POST['message']) && strlen($_POST['message']) <= 1000) {
+            if ($_SESSION['login']) {
+                $this->model = new Message();
+                $this->model->saveMessage($_SESSION['login'], $_POST['message']);
+                return 'Сообщение успешно доставлено.';
+            }
+            else {
+                return 'Только зарегестрированные пользователи могут отправлять сообщения';
+            }
+
+        }
+        else {
+            return 'Сообщение некорректно или имеет длину более 1000 символов!';
+        }
     }
 }

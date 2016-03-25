@@ -31,6 +31,15 @@ class View
 
     }
 
+    public function renderPartial($content_view, $data = [])
+    {
+      //  extract($data);
+        // content render
+        ob_start();
+        require_once $this->dir_phtml . $content_view . TEMPLATE_EXTENSION;
+        return  ob_get_clean();
+    }
+
     /**
      * @param string $path
      */
