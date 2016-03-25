@@ -1,0 +1,11 @@
+.navbar_margin {
+    margin-bottom: 52px;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 94px;
+    background-color: #f5f5f5;
+}

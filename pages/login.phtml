@@ -2,8 +2,8 @@
     <div class="row">
         <div class=" col-md-4 col-md-offset-4">
             <?php
-            if ((isset($_POST['username'])) && (isset($_POST['password']))) {
-                echo '<div class="alert alert-danger" role="alert">Username or password is incorrect!</div>';
+            if (isset($error)) {
+                echo '<div class="alert alert-danger" role="alert">' . $error . '!</div>';
             }
             ?>
             <div class="panel panel-default">
@@ -11,20 +11,25 @@
                     <strong>Login</strong>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" method="post" action="">
+                    <form class="form-horizontal" method="post" action="/main/login">
                         <div class="panel-body">
                             <div class="form-group input-group">
                                     <span class="input-group-addon"><span
-                                            class="glyphicon glyphicon-envelope"></span></span>
-                                <input class="form-control" type="email" name="email" placeholder="Email" required
-                                       autofocus>
+                                            class="glyphicon glyphicon-log-in"></span></span>
+                                <input class="form-control" type="text" name="login" placeholder="Login" required autofocus>
                             </div>
                             <div class="form-group input-group">
                                     <span class="input-group-addon"><span
                                             class="glyphicon glyphicon-lock"></span></span>
-                                <input class="form-control" type="password" name="password" placeholder="Password"
-                                       required>
+                                <input class="form-control" type="password" name="password" placeholder="Password" required>
                             </div>
+                            <div class="form-group input-group">
+                                    <span class="input-group-addon"><span
+                                            class="glyphicon glyphicon-envelope"></span></span>
+                                <input class="form-control" type="email" name="email" placeholder="Email" required>
+                                <input type="hidden" name="_csrf" value="">
+                            </div>
+
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
                     </form>
