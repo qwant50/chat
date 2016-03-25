@@ -58,6 +58,6 @@ class Bootstrap
             $actionName = 'actionIndex';
         }
 
-        $controllerObj->$actionName();
+        echo $controllerObj->$actionName();
     }
 }

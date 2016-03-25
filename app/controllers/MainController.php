@@ -13,19 +13,19 @@ class MainController extends Controller
     {
         $this->model = new Model();
         //$this->data = $this->model->run($this->params);
-        echo $this->view->render('main', 'layouts' . DS . 'default');  //page, layout
+        return $this->view->render('main');  //page, layout
     }
 
     public function actionDashboard()
     {
         $this->model = new Model();
-        echo $this->view->render('admin-page-dashboard', 'layouts' . DS . 'default');  //page, layout
+        return $this->view->render('admin-page-dashboard');  //page, layout
     }
 
     public function actionLogin()
     {
         $this->model = new Model();
         //$this->data = $this->model->run($this->params);
-        echo $this->view->render('login', 'layouts' . DS . 'default');  //page, layout
+        return $this->view->render('login');  //page, layout
     }
 }
