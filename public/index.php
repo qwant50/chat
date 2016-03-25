@@ -11,14 +11,15 @@ try {
 
     $config = new Config(dirname(__DIR__) . '/app/core/configs');
 
-    // var_dump($config->getData());
+  //   var_dump($config->getData());
 
     $app = new Bootstrap();  // default page
+    $app->init();
     $app->router();
     $app->dispatch();
     echo "Controller: $app->controller<br>";
     echo "Action: $app->action<br>";
-    var_dump($app->params);
+  //  var_dump($app->params);
 
 
 } catch (Exception $e) {

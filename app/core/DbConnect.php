@@ -1,17 +1,17 @@
 <?php
-namespace malahov;
+namespace malahov\core;
 
 class DbConnect
 {
     private $_params;
     private $_connection;
-    private static $_instance;
+    private static $instance;
 
 
     private function __construct()
     {
         try {
-            $this->_params = require 'app/core/configs/db.conf.php';
+            $this->_params = require 'configs/development/db.php';
             $this->_connection = new \PDO(
                 "mysql:host={$this->_params['host']};dbname={$this->_params['dbname']}",
                 $this->_params['username'],
@@ -25,10 +25,10 @@ class DbConnect
 
     public static function getInstance()
     {
-        if (!self::$_instance) {
-            self::$_instance = new self();
+        if (!self::$instance) {
+            self::$instance = new self();
         }
-        return self::$_instance;
+        return self::$instance;
     }
 
     public function getConnection()

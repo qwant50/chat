@@ -24,32 +24,28 @@
                                 <span class="sr-only">Toggle navigation</span>
 
                             </button>
-                            <a class="navbar-brand logo" href="main"><b>Chat</b></a>
+                            <a class="navbar-brand logo" href="/main/index"><b>Chat</b></a>
                         </div>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right header-right">
                                 <li class="header_text_al">
-                                    <a href="#">
-                                        <span class="glyphicon glyphicon-comment"></span>
+                                    <a href="/main/signup">
+                                        Signup <span class="glyphicon glyphicon-ok"></span>
                                     </a>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" id="pad_null" data-toggle="dropdown" role="button" aria-haspopup="true"
                                        aria-expanded="false">
+                                        <?= isset($_SESSION['login']) ? $_SESSION['login'] : '' ?>
                                         <span class="glyphicon glyphicon-user"></span>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="#">View Profile</a>
-                                        </li>
-                                        <li role="separator" class="divider"></li>
-                                        <li>
-                                            <a href="#">Log out</a>
+                                            <?= isset($_SESSION['login']) ? '<a href="/main/logout">Log out</a>' : '<a href="/main/login">Log in</a>' ?>
                                         </li>
                                     </ul>
                                 </li>
                             </ul>
-
 
                         </div>
                     </div>
@@ -70,7 +66,7 @@
             <div class="container col-md-12 text-center">
                 <div class="row">
                     <p class="navbar-center copyright-mar">Copyright &copy; <?= date('Y') ?> - Free online chat
-                        <a href="#">Chat.com</a>
+                        <a href="/main/index">Chat.com</a>
                     </p>
                 </div>
             </div>

@@ -44,6 +44,11 @@ class Bootstrap
 
     }
 
+    public function init()
+    {
+        session_start();
+    }
+
     public function dispatch()
     {
         $controllerName = 'malahov\\controllers\\' . $this->controller . 'Controller';
