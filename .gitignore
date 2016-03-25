@@ -1,0 +1,5 @@
+h/classes/core/config/config.php
+/public/components
+/vendor/
+composer.lock
+/.idea/

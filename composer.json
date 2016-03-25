@@ -1,0 +1,21 @@
+{
+  "require": {
+    "robloach/component-installer": "^0.2.3",
+    "qwant50/config": "dev-master",
+    "components/jquery": "2.*",
+    "components/bootstrap": "^3.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~5.0"
+  },
+  "config": {
+    "component-dir": "public/components",
+    "component-baseurl": "public"
+  },
+  "autoload": {
+    "psr-4": {
+      "malahov\\": "app/"
+    }
+  }
+
+}
