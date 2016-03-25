@@ -13,6 +13,11 @@ class View
         $this->dir_phtml = DIR_TO_PAGES;
     }
 
+    /**
+     * @param string $content_view  name of file
+     * @param array $data from model
+     * @return string
+     */
     public function render($content_view, $data = [])
     {
         extract($data);
