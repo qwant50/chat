@@ -32,7 +32,7 @@
                                     <span class="input-group-addon"><span
                                             class="glyphicon glyphicon-envelope"></span></span>
                                 <input class="form-control" type="email" name="email" placeholder="Email" required>
-                                <input type="hidden" name="_csrf" value="">
+                                <input type="hidden" name="_csrf" value="<?= isset($_csrf) ? $_csrf : '' ?>">
                             </div>
 
                         </div>

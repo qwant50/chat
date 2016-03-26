@@ -1,8 +1,7 @@
 <section class="messages">
-   <?php
-   foreach ($data as $item):
-   echo  'Автор: <b style="color: rgb(0, 165, 210)">' .$item['login'] . '</b> Дата:' . $item['created_at'] . '   ' . '<br><b>' . $item['content'] . '</b><br>';
-   endforeach;
-   ?>
-    <!-- end form -->
+    <?php
+    foreach ($data as $item):
+        echo 'Автор: <b style="color: rgb(0, 165, 210)">' . $item['login'] . '</b> Дата:' . $item['created_at'] . '   ' . '<br><b>' . $item['content'] . '</b><hr>';
+    endforeach;
+    ?>
 </section>
