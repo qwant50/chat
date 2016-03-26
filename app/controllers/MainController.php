@@ -5,12 +5,15 @@ namespace malahov\controllers;
 use malahov\core\Controller;
 use malahov\models\Message;
 use malahov\models\modelSignup;
-use malahov\core\Model;
-use malahov\core\View;
+
 
 class MainController extends Controller
 {
-
+    /**
+     * set token
+     *
+     * @param array $data
+     */
     public function setToken(&$data = [])
     {
         $_SESSION['_csrf'] = md5(uniqid(rand(), 1));
@@ -24,10 +27,12 @@ class MainController extends Controller
 
     public function actionIndex()
     {
-        return $this->view->render('main');  //page, layout
+        return $this->view->render('main');  //page, data
     }
 
-
+    /**
+     * @return string
+     */
     public function actionSignup()
     {
         $data = [];
@@ -55,12 +60,14 @@ class MainController extends Controller
             }
         }
         $this->setToken($data);
-        return $this->view->render('signup', $data);  //page, layout
+        return $this->view->render('signup', $data);  //page, data
     }
 
+    /**
+     * @return string
+     */
     public function actionLogin()
     {
-
         if (isset($_SESSION['login'])) {
             return $this->actionIndex();  //  if user already loggin on
         }
@@ -82,7 +89,6 @@ class MainController extends Controller
         }
         $this->setToken($data);
         return $this->view->render('login', $data);  //page, layout
-
     }
 
     public function actionLogout()
@@ -91,13 +97,15 @@ class MainController extends Controller
         return $this->actionIndex();
     }
 
+    /**
+     * @return string
+     */
     public function actionPosts()
     {
         $this->model = new Message();
         $data = $this->model->getMessages();
         return $this->view->renderPartial('messages', $data);
-        // return $res;
-        //return 'Now: ' . date('l jS \of F Y h:i:s A');
+
     }
 
     public function actionAddMessage()
@@ -105,7 +113,7 @@ class MainController extends Controller
         if (isset($_POST['message']) && is_string($_POST['message']) && strlen($_POST['message']) <= 1000) {
             if ($_SESSION['login']) {
                 $this->model = new Message();
-                $this->model->saveMessage($_SESSION['login'], $_POST['message']);
+                $this->model->saveMessage($_SESSION['login'], htmlspecialchars($_POST['message']));
                 return 'Сообщение успешно доставлено.';
             } else {
                 return 'Только зарегестрированные пользователи могут отправлять сообщения';
