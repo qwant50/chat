@@ -13,7 +13,7 @@ class DbConnect
         try {
             $this->params = require 'configs/development/db.php';
             $this->connection = new \PDO(
-                "mysql:host={$this->params['host']};dbname={$this->params['dbname']}",
+                "mysql:host={$this->params['host']};dbname={$this->params['dbname']};charset={$this->params['charset']}",
                 $this->params['username'],
                 $this->params['password']
             );
@@ -25,10 +25,7 @@ class DbConnect
 
     public static function getInstance()
     {
-        if (!self::$instance) {
-            self::$instance = new self();
-        }
-        return self::$instance;
+        return self::$instance ? : self::$instance = new self();
     }
 
     public function getConnection()

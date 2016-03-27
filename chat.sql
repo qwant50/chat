@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 26, 2016 at 02:14 PM
+-- Generation Time: Mar 27, 2016 at 03:55 PM
 -- Server version: 5.6.27
 -- PHP Version: 5.6.14
 
@@ -44,11 +44,45 @@ INSERT INTO `message` (`message_id`, `user_id`, `content`, `created_at`, `update
 (3, 1, 'qwant3', '2016-03-25 23:28:31', NULL),
 (4, 2, 'qwant33', '2016-03-25 23:37:34', NULL),
 (5, 2, 'qwant335', '2016-03-26 00:03:59', NULL),
-(6, 2, 'Ð¢ÑƒÑ‚ Ñ‚ÑƒÑÑÑ‚ ÐºÑ€ÑƒÑ‚Ñ‹Ðµ Ð¿ÐµÑ€Ñ†Ñ‹', '2016-03-26 00:34:28', NULL),
-(7, 2, 'Ð¢ÑƒÑ‚ Ñ‚ÑƒÑÑÑ‚ ÐºÑ€ÑƒÑ‚Ñ‹Ðµ Ð¿ÐµÑ€Ñ†Ñ‹', '2016-03-26 00:38:10', NULL),
-(8, 2, 'Ð¢ÑƒÑ‚ Ñ‚ÑƒÑÑÑ‚ ÐºÑ€ÑƒÑ‚Ñ‹Ðµ Ð¿ÐµÑ€Ñ†Ñ‹. Ð˜ ÑÑƒÐ¿ÐµÑ€ ÐºÑ€ÑƒÑ‚Ñ‹Ðµ Ð½Ð¸ÑˆÑ‚ÑÐºÐ¸.', '2016-03-26 00:38:33', NULL),
-(9, 2, 'Ð¢ÑƒÑ‚ Ñ‚ÑƒÑÑÑ‚ ÐºÑ€ÑƒÑ‚Ñ‹Ðµ Ð¿ÐµÑ€Ñ†Ñ‹. Ð˜ ÑÑƒÐ¿ÐµÑ€ ÐºÑ€ÑƒÑ‚Ñ‹Ðµ Ð½Ð¸ÑˆÑ‚ÑÐºÐ¸.', '2016-03-26 00:39:39', NULL),
-(10, 2, 'Ð¢ÑƒÑ‚ Ñ‚ÑƒÑÑÑ‚ ÐºÑ€ÑƒÑ‚Ñ‹Ðµ Ð¿ÐµÑ€Ñ†Ñ‹. Ð˜ ÑÑƒÐ¿ÐµÑ€ ÐºÑ€ÑƒÑ‚Ñ‹Ðµ Ð½Ð¸ÑˆÑ‚ÑÐºÐ¸.', '2016-03-26 00:39:40', NULL);
+(12, 3, 'new message', '2016-03-27 13:07:56', NULL),
+(13, 3, 'new message2', '2016-03-27 13:12:03', NULL),
+(14, 3, 'На русском корректно', '2016-03-27 13:15:30', NULL),
+(15, 3, 'wrtrteeetwet\r\n', '2016-03-27 13:39:16', NULL),
+(16, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:24', NULL),
+(17, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:26', NULL),
+(18, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:28', NULL),
+(19, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:28', NULL),
+(20, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:28', NULL),
+(21, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:28', NULL),
+(22, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:28', NULL),
+(23, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:29', NULL),
+(24, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:29', NULL),
+(25, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:29', NULL),
+(26, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:29', NULL),
+(27, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:29', NULL),
+(28, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:31', NULL),
+(29, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:31', NULL),
+(30, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:31', NULL),
+(31, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:31', NULL),
+(32, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:32', NULL),
+(33, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:32', NULL),
+(34, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:32', NULL),
+(35, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:32', NULL),
+(36, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:32', NULL),
+(37, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:32', NULL),
+(38, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:33', NULL),
+(39, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:33', NULL),
+(40, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:33', NULL),
+(41, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:33', NULL),
+(42, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:33', NULL),
+(43, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:34', NULL),
+(44, 3, 'wrtrteeetwet\r\nwertwerewrtw', '2016-03-27 13:39:34', NULL),
+(45, 3, ':)', '2016-03-27 14:43:25', NULL),
+(46, 3, ':)', '2016-03-27 14:43:45', NULL),
+(47, 3, 'text :)', '2016-03-27 14:46:35', NULL),
+(48, 3, 'e :)', '2016-03-27 14:49:30', NULL),
+(49, 3, 'Эмоции :)  :(  :|', '2016-03-27 15:01:34', NULL),
+(50, 3, 'Эмоции :)  :(  :|', '2016-03-27 15:01:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -101,7 +135,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `user`
 --

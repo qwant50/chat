@@ -5,7 +5,7 @@ namespace malahov\models;
 use malahov\core\Model;
 use malahov\core\DbConnect;
 
-class modelSignup extends Model
+class Signup extends Model
 {
     public function isUserExist($login, $password){
         $db = DbConnect::getInstance();

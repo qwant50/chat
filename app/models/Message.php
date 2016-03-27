@@ -9,19 +9,15 @@ class Message extends Model
 {
     public function getMessages(){
         $db = DbConnect::getInstance();
-        $stmt = $db->getConnection()->prepare("SELECT message.message_id, message.content, user.login, message.created_at FROM message LEFT JOIN user ON (message.user_id = user.user_id)");
+        $stmt = $db->getConnection()->prepare("SELECT message.message_id, message.content, user.login, message.created_at FROM message LEFT JOIN user ON (message.user_id = user.user_id)
+ WHERE message.created_at >= DATE_SUB(NOW(),INTERVAL 2 HOUR)");
         $stmt->execute();
 
-        while ($row = $stmt->fetch(\PDO::FETCH_LAZY))
+        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC))
         {
-            $message['created_at'] = $row['created_at'];
-            $message['message_id'] = $row['message_id'];
-            $message['login'] = $row['login'];
-            $message['content'] = $row['content'];
-            $messages[] = $message;
-
+            $messages[] = $row;
         }
-        return $messages;
+        return $messages ? : [];
     }
 
     public function saveMessage($login, $content)

@@ -9,6 +9,12 @@ class Bootstrap
     public $action = 'Index';  // default action
     public $params = [];
 
+
+    public function init()
+    {
+        session_start();
+    }
+
     public function router()
     {
         $requestURI = $_SERVER["REQUEST_URI"];
@@ -44,9 +50,12 @@ class Bootstrap
 
     }
 
-    public function init()
+    public function firewall()
     {
-        session_start();
+        if (!isset($_SESSION['login']) && $this->controller != 'Main' && !in_array($this->action, ['Login', 'Signup'])) {
+            $this->controller = 'Main';
+            $this->action = 'Index';
+        }
     }
 
     public function dispatch()

@@ -1,34 +1,37 @@
 <section class="container">
     <div class="row">
-        <div class="">
-            <?php if (isset($_SESSION['login'])) { ?>
-                <div class="row">
-                    <label>Last messages:</label>
-                    <div id="result" class="col-xs-12 well">
+        <?php if (isset($_SESSION['login'])) { ?>
+            <div class="row">
+                <div class="col-xs-12">
+                    <br>
+                    <label>Messages in the last 2 hours:</label>
+                    <div id="result" class="well">
 
                     </div>
-                    <button id="refreshButton" class="hidden" type="button"></button>
                 </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <form action="javascript:void('interception auto-post')">
+                <button id="refreshButton" class="hidden" type="button"></button>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <form action="javascript:void('interception auto-post')">
+                        <hr>
+                        <div class="form-group">
+                            <label>Input a new message - avaible emotion icons
+                                :) ,
+                                :( ,
+                                :| </label>
+                            <textarea rows="5" class="form-control" name="message"></textarea>
+                        </div>
 
-                            <hr>
-                            <div class="form-group">
-                                <label>Input a new message:</label>
-                                <textarea rows="5" class="form-control" name="message"></textarea>
-                            </div>
-
-                            <button id="submit" class="btn btn-success">Send</button>
-                        </form>
-                        <!-- end form -->
-                    </div>
+                        <button id="submit" class="btn btn-success">Send</button>
+                    </form>
+                    <!-- end form -->
                 </div>
-                <div class="row">
-                    <div id="sent" class="col-xs-12">
-                    </div>
+            </div>
+            <div class="row">
+                <div id="sent" class="col-xs-12">
                 </div>
-            <?php } ?>
-        </div>
+            </div>
+        <?php } ?>
     </div>
 </section>

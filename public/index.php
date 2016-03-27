@@ -16,9 +16,10 @@ try {
     $app = new Bootstrap();  // default page
     $app->init();
     $app->router();
+    $app->firewall();
     $app->dispatch();
   //  echo "Controller: $app->controller<br>";
-   // echo "Action: $app->action<br>";
+  //  echo "Action: $app->action<br>";
   //  var_dump($app->params);
 
 
