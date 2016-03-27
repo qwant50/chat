@@ -52,7 +52,7 @@ class Bootstrap
 
     public function firewall()
     {
-        if (!isset($_SESSION['login']) && $this->controller != 'Main' && !in_array($this->action, ['Login', 'Signup'])) {
+        if (!isset($_SESSION['login']) && !in_array($this->controller . $this->action, ['MainLogin', 'MainSignup'])) {
             $this->controller = 'Main';
             $this->action = 'Index';
         }
