@@ -14,17 +14,16 @@ class Message extends Model
                                                FROM message LEFT JOIN user ON (message.user_id = user.user_id)
                                                WHERE message.created_at >= DATE_SUB(NOW(),INTERVAL 2 HOUR)");
         $stmt->execute();
-
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $messages[] = $row;
         }
-        return $messages ?: [];
+        return $messages ? : [];
     }
 
     public function saveMessage($login, $content)
     {
         $db = DbConnect::getInstance();
-        $stmt = $db->getConnection()->prepare("INSERT INTO message (user_id, content) VALUES ((SELECT user_id FROM user WHERE login = :login), :content)");
+        $stmt = $db->getConnection()->prepare("INSERT INTO message (user_id, content) VALUES ((SELECT user_id FROM user WHERE login = :login LIMIT 1), :content)");
         $stmt->bindParam(':login', $login);
         $stmt->bindParam(':content', $content);
         $stmt->execute();
