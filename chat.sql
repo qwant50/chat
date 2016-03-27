@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 27, 2016 at 03:55 PM
+-- Generation Time: Mar 27, 2016 at 05:24 PM
 -- Server version: 5.6.27
 -- PHP Version: 5.6.14
 
@@ -82,7 +82,9 @@ INSERT INTO `message` (`message_id`, `user_id`, `content`, `created_at`, `update
 (47, 3, 'text :)', '2016-03-27 14:46:35', NULL),
 (48, 3, 'e :)', '2016-03-27 14:49:30', NULL),
 (49, 3, 'Эмоции :)  :(  :|', '2016-03-27 15:01:34', NULL),
-(50, 3, 'Эмоции :)  :(  :|', '2016-03-27 15:01:43', NULL);
+(50, 3, 'Эмоции :)  :(  :|', '2016-03-27 15:01:43', NULL),
+(51, 3, 'This is a  new message with a smile :)', '2016-03-27 17:16:41', NULL),
+(52, 3, ':) :( :|\r\n', '2016-03-27 17:20:46', NULL);
 
 -- --------------------------------------------------------
 
@@ -135,12 +137,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
