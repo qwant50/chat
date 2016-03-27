@@ -16,6 +16,14 @@ class Signup extends Model
         return $row = $stmt->fetch(\PDO::FETCH_LAZY) ? true : false;
     }
 
+    public function isEmailExist($email){
+        $db = DbConnect::getInstance();
+        $stmt = $db->getConnection()->prepare("SELECT user_id FROM user WHERE  email = :email LIMIT 1");
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        return $row = $stmt->fetch(\PDO::FETCH_LAZY) ? true : false;
+    }
+
     public function saveUser($login, $password, $email)
     {
         $db = DbConnect::getInstance();

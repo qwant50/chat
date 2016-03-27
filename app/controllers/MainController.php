@@ -36,6 +36,8 @@ class MainController extends Controller
                     $this->model = new Signup();
                     if ($this->model->isUserExist($_POST['login'], $_POST['password'])) {
                         $data['error'] = 'User exist. Please change login or password';
+                    } elseif ($this->model->isEmailExist($_POST['email'])) {
+                        $data['error'] = 'User with same email is exist';
                     } else {
                         $this->model->saveUser($_POST['login'], $_POST['password'], $_POST['email']);
                         return $this->actionIndex();

@@ -7,17 +7,18 @@ use malahov\core\DbConnect;
 
 class Message extends Model
 {
-    public function getMessages(){
+    public function getMessages()
+    {
         $db = DbConnect::getInstance();
-        $stmt = $db->getConnection()->prepare("SELECT message.message_id, message.content, user.login, message.created_at FROM message LEFT JOIN user ON (message.user_id = user.user_id)
- WHERE message.created_at >= DATE_SUB(NOW(),INTERVAL 2 HOUR)");
+        $stmt = $db->getConnection()->prepare("SELECT message.message_id, message.content, user.login, message.created_at
+                                               FROM message LEFT JOIN user ON (message.user_id = user.user_id)
+                                               WHERE message.created_at >= DATE_SUB(NOW(),INTERVAL 2 HOUR)");
         $stmt->execute();
 
-        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC))
-        {
+        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $messages[] = $row;
         }
-        return $messages ? : [];
+        return $messages ?: [];
     }
 
     public function saveMessage($login, $content)
