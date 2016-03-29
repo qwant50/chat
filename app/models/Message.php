@@ -13,8 +13,8 @@ class Message extends Model
         $stmt = $db->getConnection()->prepare("SELECT message.message_id, message.content, user.login, message.created_at
                                                FROM message LEFT JOIN user ON (message.user_id = user.user_id)
                                                WHERE message.created_at >= DATE_SUB(NOW(),INTERVAL 2 HOUR)");
-        $messages = [];
         $stmt->execute();
+        $messages = [];
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $messages[] = $row;
         }

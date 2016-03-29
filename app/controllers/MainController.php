@@ -3,6 +3,7 @@
 namespace malahov\controllers;
 
 use malahov\core\Controller;
+use malahov\core\Validator;
 use malahov\models\Message;
 use malahov\models\Signup;
 
@@ -23,23 +24,26 @@ class MainController extends Controller
         $data = [];
         if (isset($_POST['_csrf']) && $_POST['_csrf'] == $this->getToken()) {
             if (isset($_POST['login']) && isset($_POST['password']) && isset($_POST['repassword']) && isset($_POST['email'])) {
-                if (!is_string($_POST['login']) || !preg_match('/^(\d|\w|-|_){3,20}$/', $_POST['login'])) {
+                $login = Validator::clean($_POST['login']);
+                $password = Validator::clean($_POST['password']);
+                $repassword = Validator::clean($_POST['repassword']);
+                $email = trim($_POST['email']);
+                if (!preg_match('/^(\d|\w|-|_){3,20}$/', $login)) {
                     $data['error'] = 'Login is incorrect';
-                } elseif (!is_string($_POST['password']) || !preg_match('/^.{6,20}$/', $_POST['password'])) {
+                } elseif (!preg_match('/^.{6,20}$/', $password)) {
                     $data['error'] = 'Password is incorrect';
-                } elseif (!is_string($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || !strlen($_POST['email']) > 50
-                ) {
+                } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) || !strlen($email) > 50) {
                     $data['error'] = 'Email is incorrect';
-                } elseif (!is_string($_POST['repassword']) || $_POST['password'] != $_POST['repassword']) {
+                } elseif ( $password != $repassword) {
                     $data['error'] = 'Passwords are not eq';
                 } else {
                     $this->model = new Signup();
-                    if ($this->model->isUserExist($_POST['login'], $_POST['password'])) {
-                        $data['error'] = 'User exist. Please change login or password';
-                    } elseif ($this->model->isEmailExist($_POST['email'])) {
+                    if ($this->model->isUserExist($login)) {
+                        $data['error'] = 'User exist. Please change login';
+                    } elseif ($this->model->isEmailExist($email)) {
                         $data['error'] = 'User with same email is exist';
                     } else {
-                        $this->model->saveUser($_POST['login'], $_POST['password'], $_POST['email']);
+                        $this->model->saveUser($login, $password, $email);
                         return $this->actionIndex();
                     }
                 }
@@ -60,14 +64,16 @@ class MainController extends Controller
         $data = [];
         if (isset($_POST['_csrf']) && $_POST['_csrf'] == $this->getToken()) {
             if (isset($_POST['login']) && isset($_POST['password'])) {
-                if (!is_string($_POST['login']) || !preg_match('/^(\d|\w|-|_){3,20}$/', $_POST['login'])) {
+                $login = Validator::clean($_POST['login']);
+                $password = Validator::clean($_POST['password']);
+                if (!preg_match('/^(\d|\w|-|_){3,20}$/', $login)) {
                     $data['error'] = 'Login is incorrect';
-                } elseif (!is_string($_POST['password']) || !preg_match('/^.{6,20}$/', $_POST['password'])) {
+                } elseif (!preg_match('/^.{6,20}$/', $password)) {
                     $data['error'] = 'Password is incorrect';
                 } else {
                     $this->model = new Signup();
-                    if ($this->model->isUserExist($_POST['login'], $_POST['password'])) {
-                        $_SESSION['login'] = $_POST['login'];
+                    if ($this->model->isUserExist($login, $password)) {
+                        $_SESSION['login'] = $login;
                         return $this->actionIndex();
                     }
                 }
@@ -97,7 +103,7 @@ class MainController extends Controller
 
     public function actionAddMessage()
     {
-        if (isset($_POST['message']) && is_string($_POST['message']) && strlen($_POST['message']) <= 1000) {
+        if (isset($_POST['message']) && strlen($_POST['message']) <= 1000) {
             if (!$_SESSION['login']) {
                 return 'Только зарегестрированные пользователи могут отправлять сообщения';
             } else {
