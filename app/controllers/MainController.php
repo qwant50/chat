@@ -11,6 +11,12 @@ use malahov\models\Signup;
 class MainController extends Controller
 {
 
+    public $user = [
+        'login_expr' => '', 'login_title' => '',
+        'password_expr' => '', 'password_title' => '',
+        'email_expr' => '', 'email_title' => '',
+    ];
+
     public function actionIndex()
     {
         return $this->view->render('main');  //page, data
