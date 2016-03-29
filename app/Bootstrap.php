@@ -50,6 +50,13 @@ class Bootstrap
 
     }
 
+    public function redirect($controller, $action){
+        $this->controller = ucfirst($controller);
+        $this->action = ucfirst($action);
+        $this->firewall();
+        $this->dispatch();
+    }
+
     public function firewall()
     {
         if (!isset($_SESSION['login']) && !in_array($this->controller . $this->action, ['MainLogin', 'MainSignup'])) {
