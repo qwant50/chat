@@ -23,29 +23,27 @@ class MainController extends Controller
     {
         $data = [];
         if (isset($_POST['_csrf']) && $_POST['_csrf'] == $this->getToken()) {
-            if (isset($_POST['login']) && isset($_POST['password']) && isset($_POST['repassword']) && isset($_POST['email'])) {
-                $login = Validator::clean($_POST['login']);
-                $password = Validator::clean($_POST['password']);
-                $repassword = Validator::clean($_POST['repassword']);
-                $email = trim($_POST['email']);
-                if (!preg_match('/^(\d|\w|-|_){3,20}$/', $login)) {
-                    $data['error'] = 'Login is incorrect';
-                } elseif (!preg_match('/^.{6,20}$/', $password)) {
-                    $data['error'] = 'Password is incorrect';
-                } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) || !strlen($email) > 50) {
-                    $data['error'] = 'Email is incorrect';
-                } elseif ( $password != $repassword) {
-                    $data['error'] = 'Passwords are not eq';
+            $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING);
+            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+            $repassword = filter_input(INPUT_POST, 'repassword', FILTER_SANITIZE_STRING);
+            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+            if (!preg_match('/^(\d|\w|-|_){3,20}$/', $login)) {
+                $data['error'] = 'Login is incorrect';
+            } elseif (!preg_match('/^.{6,20}$/', $password)) {
+                $data['error'] = 'Password is incorrect';
+            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) || !strlen($email) > 50) {
+                $data['error'] = 'Email is incorrect';
+            } elseif ($password != $repassword) {
+                $data['error'] = 'Passwords are not eq';
+            } else {
+                $this->model = new Signup();
+                if ($this->model->isUserExist($login, $password)) {
+                    $data['error'] = 'User exist. Please change login';
+                } elseif ($this->model->isEmailExist($email)) {
+                    $data['error'] = 'User with same email is exist';
                 } else {
-                    $this->model = new Signup();
-                    if ($this->model->isUserExist($login)) {
-                        $data['error'] = 'User exist. Please change login';
-                    } elseif ($this->model->isEmailExist($email)) {
-                        $data['error'] = 'User with same email is exist';
-                    } else {
-                        $this->model->saveUser($login, $password, $email);
-                        return $this->actionIndex();
-                    }
+                    $this->model->saveUser($login, $password, $email);
+                    return $this->actionIndex();
                 }
             }
         }
@@ -63,21 +61,22 @@ class MainController extends Controller
         }
         $data = [];
         if (isset($_POST['_csrf']) && $_POST['_csrf'] == $this->getToken()) {
-            if (isset($_POST['login']) && isset($_POST['password'])) {
-                $login = Validator::clean($_POST['login']);
-                $password = Validator::clean($_POST['password']);
-                if (!preg_match('/^(\d|\w|-|_){3,20}$/', $login)) {
-                    $data['error'] = 'Login is incorrect';
-                } elseif (!preg_match('/^.{6,20}$/', $password)) {
-                    $data['error'] = 'Password is incorrect';
+            $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING);
+            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+            if (!preg_match('/^(\d|\w|-|_){3,20}$/', $login)) {
+                $data['error'] = 'Login is incorrect';
+            } elseif (!preg_match('/^.{6,20}$/', $password)) {
+                $data['error'] = 'Password is incorrect';
+            } else {
+                $this->model = new Signup();
+                if ($this->model->isUserExist($login, $password)) {
+                    $_SESSION['login'] = $login;
+                    return $this->actionIndex();
                 } else {
-                    $this->model = new Signup();
-                    if ($this->model->isUserExist($login, $password)) {
-                        $_SESSION['login'] = $login;
-                        return $this->actionIndex();
-                    }
+                    $data['error'] = 'User not found. Login or password is incorrect';
                 }
-            };
+            }
+
         }
         $this->setToken($data);
         return $this->view->render('login', $data);  //page, data

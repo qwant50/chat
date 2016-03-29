@@ -7,10 +7,11 @@ use malahov\core\DbConnect;
 
 class Signup extends Model
 {
-    public function isUserExist($login){
+    public function isUserExist($login, $password){
         $db = DbConnect::getInstance();
-        $stmt = $db->getConnection()->prepare("SELECT user_id FROM user WHERE  login = :login LIMIT 1");
+        $stmt = $db->getConnection()->prepare("SELECT user_id FROM user WHERE  login = :login AND password = :password LIMIT 1");
         $stmt->bindParam(':login', $login);
+        $stmt->bindParam(':password', $password);
         $stmt->execute();
         return $row = $stmt->fetch(\PDO::FETCH_LAZY) ? true : false;
     }

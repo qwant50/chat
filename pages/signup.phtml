@@ -16,17 +16,20 @@
                             <div class="form-group input-group">
                                     <span class="input-group-addon"><span
                                             class="glyphicon glyphicon-log-in"></span></span>
-                                <input class="form-control" type="text" name="login" placeholder="Login" required autofocus>
+                                <input class="form-control" type="text" name="login" placeholder="Login" pattern="^.{6,20}$"
+                                       title="Login must be from 6 to 20 signs" required autofocus>
                             </div>
                             <div class="form-group input-group">
                                     <span class="input-group-addon"><span
                                             class="glyphicon glyphicon-lock"></span></span>
-                                <input class="form-control" type="password" name="password" placeholder="Password" required>
+                                <input class="form-control" type="password" name="password" placeholder="Password" pattern="^(\d|\w|-|_){3,20}$"
+                                       title="Password must be from 3 to 20 signs" required>
                             </div>
                             <div class="form-group input-group">
                                     <span class="input-group-addon"><span
                                             class="glyphicon glyphicon-lock"></span></span>
-                                <input class="form-control" type="password" name="repassword" placeholder="Repassword" required>
+                                <input class="form-control" type="password" name="repassword" placeholder="Repassword" pattern="^(\d|\w|-|_){3,20}$"
+                                       title="Password must be from 3 to 20 signs" required>
                             </div>
                             <div class="form-group input-group">
                                     <span class="input-group-addon"><span

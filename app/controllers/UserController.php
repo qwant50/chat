@@ -6,10 +6,8 @@ use malahov\core\Controller;
 use malahov\core\Model;
 use malahov\core\View;
 
-class LoginController extends Controller
+class UserController extends Controller
 {
-
-
 
     public function dashboardAction()
     {
