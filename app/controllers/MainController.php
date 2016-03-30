@@ -12,8 +12,8 @@ class MainController extends Controller
 {
 
     public $user = [
-        'login_expr' => '', 'login_title' => '',
-        'password_expr' => '', 'password_title' => '',
+        'login_expr' => '^(\d|\w|-|_){3,20}$', 'login_title' => '',
+        'password_expr' => '^.{6,20}$', 'password_title' => '',
         'email_expr' => '', 'email_title' => '',
     ];
 
@@ -33,11 +33,11 @@ class MainController extends Controller
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
             $repassword = filter_input(INPUT_POST, 'repassword', FILTER_SANITIZE_STRING);
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-            if (!preg_match('/^(\d|\w|-|_){3,20}$/', $login)) {
+            if (!preg_match("/{$this->user['login_expr']}/", $login)) {
                 $data['error'] = 'Login is incorrect';
-            } elseif (!preg_match('/^.{6,20}$/', $password)) {
+            } elseif (!preg_match("/{$this->user['password_expr']}/", $password)) {
                 $data['error'] = 'Password is incorrect';
-            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) || !strlen($email) > 50) {
+            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 50) {
                 $data['error'] = 'Email is incorrect';
             } elseif ($password != $repassword) {
                 $data['error'] = 'Passwords are not eq';
@@ -69,9 +69,9 @@ class MainController extends Controller
         if (isset($_POST['_csrf']) && $_POST['_csrf'] == $this->getToken()) {
             $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING);
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-            if (!preg_match('/^(\d|\w|-|_){3,20}$/', $login)) {
+            if (!preg_match("/{$this->user['login_expr']}/", $login)) {
                 $data['error'] = 'Login is incorrect';
-            } elseif (!preg_match('/^.{6,20}$/', $password)) {
+            } elseif (!preg_match("/{$this->user['password_expr']}/", $password)) {
                 $data['error'] = 'Password is incorrect';
             } else {
                 $this->model = new Signup();
