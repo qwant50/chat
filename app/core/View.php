@@ -18,12 +18,12 @@ class View
      * @param array $data from model
      * @return string
      */
-    public function render($content_view, $data = [])
+    public function render($contentView, $data = [])
     {
         extract($data);
         // content render
         ob_start();
-        require_once $this->dir_phtml . $content_view . TEMPLATE_EXTENSION;
+        require_once $this->dir_phtml . $contentView . TEMPLATE_EXTENSION;
         $this->content = ob_get_clean();
         // layout render
         require_once $this->dir_phtml . $this->layout_dafault . TEMPLATE_EXTENSION;
@@ -31,12 +31,12 @@ class View
 
     }
 
-    public function renderPartial($content_view, $data = [])
+    public function renderPartial($contentView, $data = [])
     {
       //  extract($data);
         // content render
         ob_start();
-        require_once $this->dir_phtml . $content_view . TEMPLATE_EXTENSION;
+        require_once $this->dir_phtml . $contentView . TEMPLATE_EXTENSION;
         return  ob_get_clean();
     }
 

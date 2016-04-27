@@ -113,7 +113,7 @@ class MainController extends Controller
                 return 'Только зарегестрированные пользователи могут отправлять сообщения';
             } else {
                 $this->model = new Message();
-                $this->model->saveMessage($_SESSION['login'], htmlspecialchars($_POST['message']));
+                $this->model->saveMessage($_SESSION['login'], htmlentities($_POST['message']));
                 return 'Сообщение успешно доставлено.';
             }
 

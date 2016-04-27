@@ -8,6 +8,7 @@ class Bootstrap
     public $controller = 'Main';  // default controller
     public $action = 'Index';  // default action
     public $params = [];
+    protected $controllerInstance;
 
 
     public function init()
@@ -23,7 +24,7 @@ class Bootstrap
             return;
         }
         // prepare URI
-        $requestURI = urldecode(trim($requestURI, '/'));
+        $requestURI = urldecode(trim(htmlspecialchars_decode($requestURI), '/'));
 
         // query string   www.site.com/controller/action/key1/value1/key2/value2?key3=value3&key4=value4
 
@@ -34,19 +35,18 @@ class Bootstrap
         $url = parse_url($requestURI, PHP_URL_PATH);
         $url = explode('/', $url);
 
-        if (isset($url[0])) {
-            $this->controller = ucfirst(htmlspecialchars($url[0]));
+        if (count($url)) {
+            $this->controller = ucfirst(array_shift($url));
         }
-        if (isset($url[1])) {
-            $this->action = ucfirst(htmlspecialchars($url[1]));
+        if (count($url)) {
+            $this->action = ucfirst(array_shift($url));
         }
 
         // get params after action
-        for ($i = 2; $i <= count($url); $i += 2) {
-            if (isset($url[$i])) {
-                $this->params[$url[$i]] = (isset($url[$i + 1])) ? $url[$i + 1] : '';
-            }
+        while ($url){
+            $this->params[array_shift($url)] = count($url) ? array_shift($url) : '';
         }
+
 
     }
 
@@ -67,18 +67,17 @@ class Bootstrap
 
     public function dispatch()
     {
-        $controllerName = 'malahov\\controllers\\' . $this->controller . 'Controller';
+        $controllerName = __NAMESPACE__ . '\\controllers\\' . $this->controller . 'Controller';
         $actionName = 'action' . $this->action;
 
         if (!class_exists($controllerName)) {
-            $controllerName = 'malahov\\controllers\\Error404Controller';
+            $controllerName = __NAMESPACE__ . '\\controllers\\Error404Controller';
             $actionName = 'actionIndex';
         };
-        $controllerObj = new $controllerName($this->params);
-        if (!method_exists($controllerObj, $actionName)) {
+        if (!method_exists($this->controllerInstance = new $controllerName($this->params), $actionName)) {
             $actionName = 'actionIndex';
         }
 
-        echo $controllerObj->$actionName();
+        echo $this->controllerInstance->$actionName();
     }
 }

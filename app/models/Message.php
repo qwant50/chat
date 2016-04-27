@@ -14,11 +14,8 @@ class Message extends Model
                                                FROM message LEFT JOIN user ON (message.user_id = user.user_id)
                                                WHERE message.created_at >= DATE_SUB(NOW(),INTERVAL 2 HOUR)");
         $stmt->execute();
-        $messages = [];
-        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            $messages[] = $row;
-        }
-        return $messages;
+        $messages = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return !empty($messages) ? $messages : [];
     }
 
     public function saveMessage($login, $content)

@@ -3,7 +3,6 @@
 use Qwant\Config;
 use malahov\Bootstrap;
 
-
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR . 'configs' . DIRECTORY_SEPARATOR . 'config.php';
 
 try {
