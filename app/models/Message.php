@@ -15,7 +15,7 @@ class Message extends Model
                                                WHERE message.created_at >= DATE_SUB(NOW(),INTERVAL 2 HOUR)");
         $stmt->execute();
         $messages = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        return !empty($messages) ? $messages : [];
+        return empty($messages) ? [] : $messages;
     }
 
     public function saveMessage($login, $content)

@@ -13,7 +13,7 @@ class Signup extends Model
         $stmt->bindParam(':login', $login);
         $stmt->bindParam(':password', $password);
         $stmt->execute();
-        return $row = $stmt->fetch(\PDO::FETCH_LAZY) ? true : false;
+        return $stmt->fetch(\PDO::FETCH_LAZY) ? true : false;
     }
 
     public function isEmailExist($email){
@@ -21,7 +21,7 @@ class Signup extends Model
         $stmt = $db->getConnection()->prepare("SELECT user_id FROM user WHERE  email = :email LIMIT 1");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
-        return $row = $stmt->fetch(\PDO::FETCH_LAZY) ? true : false;
+        return $stmt->fetch(\PDO::FETCH_LAZY) ? true : false;
     }
 
     public function saveUser($login, $password, $email)
