@@ -19,7 +19,7 @@ class DbConnect
             );
             $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {
-            die('ERROR: ' . $e->getMessage());
+            die(__CLASS__ . ' ' . $e->getMessage());
         }
     }
 

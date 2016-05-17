@@ -7,21 +7,23 @@ use malahov\core\DbConnect;
 
 class Signup extends Model
 {
-    public function isUserExist($login, $password){
+    public function isUserExist($login, $password)
+    {
         $db = DbConnect::getInstance();
         $stmt = $db->getConnection()->prepare("SELECT user_id FROM user WHERE  login = :login AND password = :password LIMIT 1");
         $stmt->bindParam(':login', $login);
         $stmt->bindParam(':password', $password);
         $stmt->execute();
-        return $stmt->fetch(\PDO::FETCH_LAZY) ? true : false;
+        return (bool)$stmt->fetch(\PDO::FETCH_LAZY);
     }
 
-    public function isEmailExist($email){
+    public function isEmailExist($email)
+    {
         $db = DbConnect::getInstance();
         $stmt = $db->getConnection()->prepare("SELECT user_id FROM user WHERE  email = :email LIMIT 1");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
-        return $stmt->fetch(\PDO::FETCH_LAZY) ? true : false;
+        return (bool)$stmt->fetch(\PDO::FETCH_LAZY);
     }
 
     public function saveUser($login, $password, $email)

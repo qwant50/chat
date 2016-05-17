@@ -8,7 +8,6 @@ if (getenv('APP_ENV')) {
     ini_set('display_errors', 0);
 }
 
-
 define('DS', DIRECTORY_SEPARATOR);
 define('__ROOT__', dirname(dirname(dirname(__DIR__))) . DS);
 define('DIR_TO_PAGES', __ROOT__ . 'pages' . DS);
