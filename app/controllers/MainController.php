@@ -37,7 +37,7 @@ class MainController extends Controller
                 $data['error'] = 'Login is incorrect';
             } elseif (!preg_match("/{$this->user['password_expr']}/", $password)) {
                 $data['error'] = 'Password is incorrect';
-            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 50) {
+            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) || mb_strlen($email) > 50) {
                 $data['error'] = 'Email is incorrect';
             } elseif ($password != $repassword) {
                 $data['error'] = 'Passwords are not eq';
@@ -108,7 +108,7 @@ class MainController extends Controller
 
     public function actionAddMessage()
     {
-        if (isset($_POST['message']) && strlen($_POST['message']) <= 1000) {
+        if (isset($_POST['message']) && mb_strlen($_POST['message']) <= 1000) {
             if (!$_SESSION['login']) {
                 return 'Только зарегестрированные пользователи могут отправлять сообщения';
             } else {

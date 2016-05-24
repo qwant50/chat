@@ -4,7 +4,7 @@
         $item['content'] = str_replace(':)', '<i class="fa fa-smile-o"></i>', $item['content']);
         $item['content'] = str_replace(':(', '<i class="fa fa-frown-o"></i>', $item['content']);
         $item['content'] = str_replace(':|', '<i class="fa fa-meh-o"></i>', $item['content']);
-        echo 'Author: <b style="color: rgb(0, 165, 210)">' . $item['login'] . '</b> | Date:' . date('d.m.Y H:i', strtotime($item['created_at'])) . '   ' . '<br><b>' . $item['content'] . '</b><hr>';
+        echo 'Author: <b style="color: rgb(0, 165, 210)">' . $item['login'] . '</b> | Date:' . date('d.m.Y H:i', strtotime($item['created_at'])) . '   ' . '<br><b>' . htmlentities($item['content']) . '</b><hr>';
     endforeach;
     ?>
 </section>
