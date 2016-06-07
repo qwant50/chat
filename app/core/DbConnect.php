@@ -3,29 +3,29 @@ namespace malahov\core;
 
 class DbConnect
 {
-    private $params;
     private $connection;
-    private static $instance;
+    private static $instances;
 
 
-    private function __construct()
+    private function __construct($connectionName)
     {
         try {
-            $this->params = require 'configs/development/db.php';
+            $params = require 'configs/development/db.php';
+
             $this->connection = new \PDO(
-                "mysql:host={$this->params['host']};dbname={$this->params['dbname']};charset={$this->params['charset']}",
-                $this->params['username'],
-                $this->params['password']
+                "mysql:host={$params[$connectionName]['host']};dbname={$params[$connectionName]['dbname']};charset={$params[$connectionName]['charset']}",
+                $params[$connectionName]['username'],
+                $params[$connectionName]['password']
             );
             $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {
-            die(__CLASS__ . ' ' . $e->getMessage());
+            die(__CLASS__ . " $connectionName " . $e->getMessage());
         }
     }
 
-    public static function getInstance()
+    public static function getInstance($connectionName)
     {
-        return self::$instance ? : self::$instance = new self();
+        return self::$instances[$connectionName] ? : self::$instances[$connectionName] = new self($connectionName);
     }
 
     public function getConnection()
