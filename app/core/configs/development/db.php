@@ -1,16 +1,18 @@
 <?php
 
 return [
-    'chat' => [
+    [
+        'connectionName' => 'chat',
         'host' => '127.0.0.1',
         'dbname' => 'chat',
         'username' => 'root',
         'password' => '',
-        'charset' => 'utf8',],
-    'turboSMS' => [
+    ],
+    [
+        'connectionName' => 'turboSMS',
         'host' => '127.0.0.1',
         'dbname' => 'chat',
         'username' => 'root',
         'password' => '',
-        'charset' => 'utf8',],
+    ],
 ];

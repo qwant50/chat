@@ -8,7 +8,6 @@ require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATO
 try {
     require dirname(__DIR__) . '/vendor/autoload.php';
 
-    $config = new Config(dirname(__DIR__) . '/app/core/configs');
 
   //   var_dump($config->getData());
 

@@ -2,9 +2,12 @@
 
 namespace malahov;
 
+use Qwant\Config;
+
 class Bootstrap
 {
-    public $baseUrl = null;
+    public static $config;
+    public $baseUrl;
     public $controller = 'Main';  // default controller
     public $action = 'Index';  // default action
     public $params = [];
@@ -13,6 +16,8 @@ class Bootstrap
 
     public function init()
     {
+        $conf = new Config(dirname(__DIR__) . '/app/core/configs');
+        self::$config = $conf->getData();
         session_start();
     }
 
