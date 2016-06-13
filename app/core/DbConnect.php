@@ -9,8 +9,6 @@ class DbConnect
     private function __construct(array $params)
     {
         try {
-            //$params = require 'configs/development/db.php';
-
             $this->connection = new \PDO(
                 "mysql:host=$params[host];dbname=$params[dbname];charset=utf8",
                 $params['username'],
