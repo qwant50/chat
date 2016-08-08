@@ -1,6 +1,6 @@
 <section class="container">
     <div class="row">
-        <?php if (isset($_SESSION['login'])) { ?>
+        <?php if (isset($_SESSION['login'])): ?>
             <div class="row">
                 <div class="col-xs-12">
                     <br>
@@ -32,6 +32,6 @@
                 <div id="sent" class="col-xs-12">
                 </div>
             </div>
-        <?php } ?>
+        <?php endif; ?>
     </div>
 </section>
