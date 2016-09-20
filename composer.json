@@ -9,6 +9,7 @@
     "phpunit/phpunit": "~5.0"
   },
   "config": {
+    "optimize-autoloader": true,
     "component-dir": "public/components",
     "component-baseurl": "public"
   },
